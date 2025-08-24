@@ -1,0 +1,30 @@
+#Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+#include <string.h>
+
+int firstUniqChar(char* s) {
+    int len = strlen(s);
+    for (int i = 0; i < len; i++) {
+        int is_unique = 1;
+    for (int j = 0; j < i; j++) {
+            if (s[i] == s[j]) {
+                is_unique = 0;
+                break;
+            }
+        }
+
+        if (is_unique) {
+            for (int j = i + 1; j < len; j++) {
+                if (s[i] == s[j]) {
+                    is_unique = 0;
+                    break;
+                }
+            }
+        }
+
+        if (is_unique) {
+            return i;
+        }
+    }
+    
+    return -1;
+}
